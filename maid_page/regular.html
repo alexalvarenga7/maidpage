@@ -1,21 +1,120 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MaidCj - Regular Cleaning</title>
-  <link rel="stylesheet" href="assets/css/regular.css">
+  <style>
+    :root {
+      --primary-color: #4A90E2;
+      --secondary-color: #50C878;
+      --dark-color: #2C3E50;
+      --light-color: #ECF0F1;
+      --text-color: #333;
+      --white: #ffffff;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+      --transition: all 0.3s ease;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 5%; background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0;
+      z-index: 1000; box-shadow: var(--shadow);
+    }
+
+    .logo img { height: 50px; transition: var(--transition); }
+    .logo img:hover { transform: scale(1.05); }
+
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links a {
+      text-decoration: none; color: var(--dark-color); font-weight: 600;
+      padding: 0.5rem 1rem; border-radius: 5px; transition: var(--transition);
+    }
+    .nav-links a:hover {
+      background: var(--primary-color); color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle {
+      display: none; background: none; border: none; font-size: 1.5rem;
+      cursor: pointer; color: var(--dark-color);
+    }
+
+    .service-hero {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white); padding: 8rem 2rem 4rem; text-align: center; margin-top: 60px;
+    }
+    .service-hero h1 { font-size: 3rem; margin-bottom: 1rem; animation: fadeInDown 0.8s ease; }
+    .service-hero p { font-size: 1.3rem; opacity: 0.9; animation: fadeInUp 0.8s ease; }
+
+    .content-section { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+
+    .service-card-detail {
+      background: var(--white); border-radius: 15px; padding: 2.5rem;
+      margin-bottom: 2rem; box-shadow: var(--shadow); transition: var(--transition);
+    }
+    .service-card-detail:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+
+    .service-card-detail h2 { color: var(--primary-color); font-size: 2rem; margin-bottom: 1rem; }
+    .service-card-detail p { font-size: 1.1rem; color: #666; line-height: 1.8; }
+
+    .features-list { list-style: none; margin-top: 1.5rem; }
+    .features-list li {
+      padding: 0.8rem 0; padding-left: 2rem; position: relative;
+      font-size: 1.1rem; color: #555;
+    }
+    .features-list li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--secondary-color); font-weight: bold; font-size: 1.2rem;
+    }
+
+    .cta-button {
+      display: inline-block; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white); padding: 1rem 2.5rem; border-radius: 25px; text-decoration: none;
+      font-weight: 600; margin-top: 1.5rem; transition: var(--transition);
+    }
+    .cta-button:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4); }
+
+    footer {
+      background: var(--dark-color); color: var(--white);
+      text-align: center; padding: 2rem; margin-top: 3rem;
+    }
+
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 100%; left: 0; width: 100%;
+        background: var(--white); flex-direction: column; padding: 1rem 0; box-shadow: var(--shadow);
+      }
+      .nav-links.show { display: flex; }
+      .nav-links li { text-align: center; padding: 0.5rem 0; }
+      .service-hero h1 { font-size: 2rem; }
+      .service-hero p { font-size: 1.1rem; }
+    }
+  </style>
 </head>
 
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo">
-        <a href="index.html">
-          <img src="assets/img/logo1.png" alt="MaidCj Logo"></a>
-      </div>
-      <button class="menu-toggle">&#9776;</button> <!-- ícono hamburguesa -->
+      <div class="logo"><a href="index.html"><img src="assets/img/logo1.png" alt="MaidCj Logo"></a></div>
+      <button class="menu-toggle">&#9776;</button>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="services.html">Services</a></li>
@@ -25,77 +124,35 @@
     </nav>
   </header>
 
-  <h1>Regular Cleaning</h1>
-
-  <section>
-    <h2>General Cleaning</h2>
-    <ul>
-      <li>Dust furniture</li>
-      <li>Dust large electronics (e.g. TV)</li>
-      <li>Dust lamps</li>
-      <li>Dust light switches</li>
-      <li>Sweep or vacuum floors</li>
-      <li>Empty wastebaskets</li>
-      <li>Mop floors (if appropriate)</li>
-    </ul>
+  <section class="service-hero">
+    <h1>Maid CJ Regular Cleaning</h1>
+    <p>Keep your home fresh and organized with our regular cleaning service</p>
   </section>
 
-  <section>
-    <h2>Bedroom(s)</h2>
-    <ul>
-      <li>Make beds</li>
-      <li>Change bed linens (if provided)</li>
-      <li>Dust headboard</li>
-      <li>Dust lamps</li>
-      <li>Dust light switches</li>
-    </ul>
+  <section class="content-section">
+    <div class="service-card-detail">
+      <h2>What's Included</h2>
+      <p>Maid CJ Regular Cleaning keeps frequently used and accessible areas clean, perfect for maintaining a fresh, organized home or condo. Our professional team ensures every corner sparkles.</p>
+      <ul class="features-list">
+        <li>Dusting all accessible surfaces</li>
+        <li>Vacuuming carpets and rugs</li>
+        <li>Mopping hard floors</li>
+        <li>Cleaning bathrooms (toilets, sinks, showers)</li>
+        <li>Kitchen cleaning (countertops, sink, exterior of appliances)</li>
+        <li>Emptying trash bins</li>
+        <li>Making beds and changing linens (if requested)</li>
+        <li>Organizing common areas</li>
+      </ul>
+      <a href="contact.html" class="cta-button">Book Now</a>
+    </div>
   </section>
 
-  <section>
-    <h2>Bathroom(s)</h2>
-    <ul>
-      <li>Mirror</li>
-      <li>Sink</li>
-      <li>Faucet</li>
-      <li>Counters</li>
-      <li>Toilet</li>
-      <li>Bathtub / Shower</li>
-      <li>Enclosure / Surround Tiles / Floors</li>
-      <li>Shower Rod / Door</li>
-      <li>Faucets / Controls</li>
-      <li>Towel bars</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Kitchen</h2>
-    <ul>
-      <li>Counters</li>
-      <li>Sink</li>
-      <li>Faucet</li>
-      <li>Stovetop / Splash Guards / Backsplash</li>
-      <li>Load the dishwasher (if already empty)</li>
-      <li>Microwave (Interior & Exterior)</li>
-      <li>Oven / Range (Exterior)</li>
-      <li>Fridge (Exterior)</li>
-      <li>Dishwasher (Exterior)</li>
-      <li>Other Small Appliances (Exterior)</li>
-      <li>Cabinets (Exterior)</li>
-    </ul>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 MaidCj. All rights reserved.</p>
-  </footer>
+  <footer><p>&copy; 2025 MaidCj. All rights reserved.</p></footer>
 
   <script>
     const toggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
-
-    toggle.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
+    toggle.addEventListener('click', () => { navLinks.classList.toggle('show'); });
   </script>
 </body>
-
 </html>
