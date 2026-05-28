@@ -1,14 +1,35 @@
-maid_page/dist/
-maid_page/build/
-maid_page/node_modules/
-maid_page/.env
-maid_page/.env.local
-maid_page/*.env.*
-maid_page/.vscode/
-maid_page/.idea/
-maid_page/*.log
-maid_page/*.tmp
-maid_page/__pycache__/
-maid_page/*.pyc
-maid_page/.DS_Store
-maid_page/Thumbs.db
+```
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+*.o
+*.obj
+
+# Dependencies
+.venv/
+venv/
+node_modules/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# OS
+.DS_Store
+Thumbs.db
+```

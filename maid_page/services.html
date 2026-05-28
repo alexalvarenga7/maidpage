@@ -1,11 +1,258 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MaidCj - Services</title>
-  <link rel="stylesheet" href="assets/css/style2.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-blue: #4A90E2;
+      --primary-green: #50C878;
+      --dark-blue: #2C3E50;
+      --light-gray: #F8F9FA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--dark-blue);
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+
+    .logo img {
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark-blue);
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-blue);
+      background: rgba(74, 144, 226, 0.1);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--dark-blue);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.95;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    /* Services Grid */
+    .services-section {
+      padding: 2rem 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      padding: 2rem 0;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .service-card h3 {
+      padding: 1.5rem 1.5rem 0.5rem;
+      font-size: 1.4rem;
+      color: var(--primary-blue);
+    }
+
+    .service-card p {
+      padding: 0 1.5rem 1.5rem;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .service-button {
+      display: block;
+      margin: 0 1.5rem 1.5rem;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+      color: var(--white);
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    }
+
+    .service-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark-blue);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        padding: 1rem 0;
+        gap: 0;
+        box-shadow: var(--shadow);
+        display: none;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -13,9 +260,10 @@
     <nav class="navbar">
       <div class="logo">
         <a href="index.html">
-          <img src="assets/img/logo1.png" alt="MaidCj Logo"></a>
+          <img src="assets/img/logo1.png" alt="MaidCj Logo">
+        </a>
       </div>
-      <button class="menu-toggle">&#9776;</button> <!-- ícono hamburguesa -->
+      <button class="menu-toggle">&#9776;</button>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="services.html">Services</a></li>
@@ -25,60 +273,47 @@
     </nav>
   </header>
 
-  <main>
-    <p class="titulo">Our Cleaning Services</p>
-    <p class="subtitulo">What We Do</p>
-    <p class="descripcion">
-      Experience unparalleled cleaning services from our Maid CJ Agents.
-      Whether it’s your residence, commercial space, or a post-construction site,
-      rest assured that you’ll receive top-quality service.
-    </p>
+  <section class="hero">
+    <h1>Our Cleaning Services</h1>
+    <p>Experience unparalleled cleaning services from our Maid CJ Agents. Whether it's your residence, commercial space, or a post-construction site, rest assured that you'll receive top-quality service.</p>
+  </section>
 
+  <main>
     <section class="services-section">
       <div class="services-grid">
 
         <div class="service-card">
-          <img src="assets/img/regular.jpg" alt="Limpieza Regular">
+          <img src="assets/img/regular.jpg" alt="Regular Cleaning">
           <h3>Maid CJ Regular Cleaning</h3>
-          <p>Maid CJ Regular Cleaning keeps frequently used and accessible areas clean,
-            perfect for maintaining a fresh, organized home or condo.
-          </p>
+          <p>Maid CJ Regular Cleaning keeps frequently used and accessible areas clean, perfect for maintaining a fresh, organized home or condo.</p>
           <a href="regular.html" class="service-button">Learn More</a>
         </div>
 
         <div class="service-card">
-          <img src="assets/img/limpieza.jpg" alt="Limpieza General">
+          <img src="assets/img/limpieza.jpg" alt="Post-Construction Cleaning">
           <h3>Post-Construction Cleaning</h3>
-          <p>Our post-construction service specializes in cleaning newly built or renovated properties.
-            We remove all construction debris and dust, ensuring your space is ready.
-          </p>
-          <a href="construction.html" class="service-button">Learn More</a>
+          <p>Our post-construction service specializes in cleaning newly built or renovated properties. We remove all construction debris and dust, ensuring your space is ready.</p>
+          <a href="Construction.html" class="service-button">Learn More</a>
         </div>
 
         <div class="service-card">
-          <img src="assets/img/premium.jpg" alt="Limpieza Premium">
+          <img src="assets/img/premium.jpg" alt="Premium Cleaning">
           <h3>Maid CJ Premium Cleaning</h3>
-          <p>Maid CJ Premium cleaning delivers top-quality cleaning for homes and businesses,
-            leaving every space fresh, sparkling and welcoming.
-          </p>
+          <p>Maid CJ Premium cleaning delivers top-quality cleaning for homes and businesses, leaving every space fresh, sparkling and welcoming.</p>
           <a href="pre.html" class="service-button">Learn More</a>
         </div>
 
         <div class="service-card">
-          <img src="assets/img/comercial.jpg" alt="Limpieza Comercial">
+          <img src="assets/img/comercial.jpg" alt="Commercial Cleaning">
           <h3>Maid CJ Commercial Cleaning</h3>
-          <p>Our commercial cleaning services are designed for offices, stores and gyms.
-            We ensure a clean, hygienic and professional environment.
-          </p>
+          <p>Our commercial cleaning services are designed for offices, stores and gyms. We ensure a clean, hygienic and professional environment.</p>
           <a href="comercial.html" class="service-button">Learn More</a>
         </div>
 
         <div class="service-card">
-          <img src="assets/img/move.jpg" alt="Limpieza In/Out">
+          <img src="assets/img/move.jpg" alt="Moving In/Out Cleaning">
           <h3>Moving In/Out</h3>
-          <p>Maid CJ – moving in and out cleaning made easy.
-            We leave your old home spotless and your new home sparkling, so you can focus on the next chapter.
-          </p>
+          <p>Maid CJ – moving in and out cleaning made easy. We leave your old home spotless and your new home sparkling, so you can focus on the next chapter.</p>
           <a href="inout.html" class="service-button">Learn More</a>
         </div>
 
